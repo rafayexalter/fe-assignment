@@ -1,15 +1,7 @@
 import "../styles/index.scss";
 
-/**
- *
- * @param {Object} product
- * @param {Key} index
- * @returns Product Markup
- */
-
 let products = {};
 let productsMain = {};
-let page = 1;
 let limit;
 let totalProducts;
 var element = document.querySelector(".products-grid");
@@ -22,7 +14,7 @@ function isObjEmpty(obj) {
 /**
  *
  * @returns Products and total numbers of products.
- * Reason: Either we set the total value manually or get quantity of all products in one request.
+ * Reason: Either we set the total value manually in a variable or get quantity of all products in one request.
  */
 const mainProductsFetch = async () => {
   const data = (await fetch(`http://localhost:5000/products`)).json();
@@ -32,6 +24,12 @@ const mainProductsFetch = async () => {
 };
 productsMain = await mainProductsFetch();
 
+/**
+ *
+ * @param {*} page
+ * @param {*} limit defines how many products one wants on per page.
+ * @returns
+ */
 const fetchProducts = async (page = 1, limit = 6) => {
   // Fetch product data from the specified URL
   const data = (
@@ -47,8 +45,12 @@ const fetchProducts = async (page = 1, limit = 6) => {
  */
 products = await fetchProducts();
 
+/**
+ *
+ * @param {*} page
+ * @param {*} limit defines how many products one wants on per page. One needs to update both fetchProducts params and Products to same.
+ */
 const Products = async (page = 1, limit = 6) => {
-  //console.log(page);
   var productsMain;
   if (page == 1) {
     productsMain = products;
@@ -57,6 +59,10 @@ const Products = async (page = 1, limit = 6) => {
   }
 
   const jsonData = await productsMain;
+
+  /**
+   * Map through products and display with its html markup.
+   */
   const arrayData = jsonData
     .map((data, index) => {
       return productMarkup(data, index);
@@ -70,8 +76,8 @@ Products();
 
 /**
  *
- * @param {Array} product - Array object of each product
- * @param {Number} index - Array Key
+ * @param {Array} product
+ * @param {Number} index
  * @returns
  */
 let productMarkup = (product) => {
@@ -167,9 +173,7 @@ document.addEventListener("click", function (e) {
   if (target) {
     const item = target.getAttribute("value");
     var pobject = item;
-    //console.log(target.getAttribute("value"));
     removeItemFromCart(parseInt(pobject));
-    //pobject = "";
   }
 });
 
@@ -194,7 +198,6 @@ const updateQuantity = (action, id) => {
 // Remove Product from Cart
 const removeItemFromCart = (id) => {
   cart = cart.filter((item) => item.id !== id);
-
   updateCart();
 };
 
