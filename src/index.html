@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Hashtag You FE Assignment</title>
+  </head>
+  <body>
+    <section class="modal hidden">
+      <div class="cart-header">
+        <h4>Cart</h4>
+        <button class="cart-close">&#10005;</button>
+      </div>
+      <div>
+        <div class="cart"></div>
+      </div>
+    </section>
+
+    <div class="overlay hidden"></div>
+
+    <header class="header">
+      <div class="container">
+        <h2 class="site-title">Product List</h2>
+        <nav>
+          <a class="cart-open">Open Cart</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="container">
+        <div class="products-grid"></div>
+      </div>
+      <button class="load-more" id="loadMore">Load more</button>
+      <div class="empty-space" id="emptySpace" />
+    </main>
+  </body>
+</html>
