@@ -155,7 +155,7 @@ const renderCartItems = () => {
             <div class="cart-item-info">
               <h5>${item.title}</h5>
               <p>$${item.price}</p>
-              <p>${item.quantity}</p>
+              <p>Qty: ${item.quantity}</p>
             </div>
             </div>
           <button class="remove-from-cart" value="${item.id}">Remove</button>
